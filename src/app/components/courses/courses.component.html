@@ -1,0 +1,35 @@
+<button style="margin: 0 auto; width: 100%; padding: 1rem" mat-raised-button color="accent" (click)="addCourse()">Add
+    new
+    course</button>
+<section class="container mt-5" *ngIf="courses">
+
+    <mat-card style="margin-top: 3rem; margin-left: 3rem" class="course-card" *ngFor="let courses of courses.records">
+        <mat-card-content>
+            <h3>Course:</h3>
+            <p><span class="course-card__title">Title:</span> {{courses.title}}</p>
+            <p *ngIf="courses.description"><span class="course-card__description">Description:</span>
+                {{courses.description}}</p>
+            <mat-card-actions>
+                <button mat-stroked-button color="warn" (click)="onDeleteCourse(courses.id)">Delete</button>
+                <button mat-raised-button color="primary">Modify</button>
+            </mat-card-actions>
+
+            <mat-divider> </mat-divider>
+            <h3>Exams:</h3>
+            <button mat-stroked-button color="primary" (click)="newExam(courses.id)">Add new exam</button>
+            <ng-container *ngFor="let exam of courses.exams, index as i">
+                <p><span style="font-weight: bold; font-size: 1.7rem">#{{i+1}}</span> {{exam.description}}</p>
+                <p>Is exam passed? {{exam.isPassed}} <button mat-raised-button color="accent"
+                        (click)="passTheExam(exam.id)">Pass the exam!</button>
+                </p>
+
+                <button mat-stroked-button color="warn" (click)="onDeleteExam(exam.id)">Delete</button>
+                <button mat-raised-button color="primary">Modify</button>
+            </ng-container>
+
+            <mat-divider></mat-divider>
+
+        </mat-card-content>
+    </mat-card>
+
+</section>

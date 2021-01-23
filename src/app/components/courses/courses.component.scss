@@ -1,0 +1,16 @@
+.course-card {
+  max-width: 40rem;
+  float: left;
+  display: inline;
+  width: 49%;
+
+  h3 {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__title,
+  &__description {
+    font-weight: bold;
+  }
+}

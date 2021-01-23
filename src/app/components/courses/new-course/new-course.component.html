@@ -1,0 +1,16 @@
+<form [formGroup]="newCourseForm" (ngSubmit)="onSubmit()">
+  <p>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput ngModel formControlName="title">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput ngModel formControlName="description">
+    </mat-form-field>
+  </p>
+
+  <button mat-raised-button>Add</button>
+</form>

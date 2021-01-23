@@ -1,0 +1,60 @@
+<section class="auth-flex">
+
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()" #f>
+        <mat-card [ngClass]="signupMode === true ? 'resizeSignUpForm' : '' " class="card">
+
+            <h1>{{!signupMode ? "Login to your Account" : "Create your account"}}</h1>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="this.authForm.get('email').hasError('required')">Email is required</mat-error>
+                <mat-error *ngIf="this.authForm.get('email').hasError('pattern')">Email is invalid</mat-error>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="signupMode" appearance="outline">
+                <mat-label>First name</mat-label>
+                <input matInput formControlName="firstName">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="signupMode" appearance="outline">
+                <mat-label>Index number</mat-label>
+                <input matInput formControlName="indexNumber">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline"
+                [ngStyle]="{'margin-bottom': this.authForm.get('password').hasError('pattern') ? '25px' : '' }"
+                [ngStyle]="{'height': this.authForm.get('password').hasError('pattern') && !this.signupMode ? '40rem' : '' }">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password">
+                <mat-error *ngIf="this.authForm.get('password').hasError('required')">Password is required</mat-error>
+                <mat-error *ngIf="this.authForm.get('password').hasError('pattern')">
+                    Password must have at least 5 characters and contain one upper case letter, one lower case letter,
+                    one numeric character and one special digit.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="signupMode" appearance="outline">
+                <mat-label>Confirm password</mat-label>
+                <input matInput formControlName="confirmPassword">
+                <mat-error *ngIf="this.authForm.get('password').value !== this.authForm.get('confirmPassword').value">
+                    Password do not match
+                </mat-error>
+            </mat-form-field>
+
+            <p class="pt-1">{{signupMode? "Already have an account?" :
+                "Don't have an account yet?" }}
+                <strong style="cursor: pointer;" (click)="formTypeChange()">{{!signupMode ?
+                    "Sign up"
+                    :
+                    "Sign in" }}</strong>
+            </p>
+
+            <p style="cursor: pointer;">Forget password?</p>
+
+
+            <button class="btn-resize" [disabled]="authForm.invalid" mat-raised-button color="primary">
+                {{!signupMode ? "Sign in" : "Signup"}}</button>
+        </mat-card>
+    </form>
+</section>

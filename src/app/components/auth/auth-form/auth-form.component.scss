@@ -8,12 +8,25 @@
   align-items: center;
 }
 .card {
-  width: 20rem;
-  height: 40vh;
+  padding: 1.5rem;
+  width: 35rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
+
+  h1 {
+    text-align: center;
+  }
 }
 
-.asd {
-  height: 60vh;
+.resizeSignInForm {
+  height: 38rem;
+}
+
+.resizeSignUpForm {
+  height: 60rem;
+}
+
+.btn-resize {
+  margin-top: auto;
 }
