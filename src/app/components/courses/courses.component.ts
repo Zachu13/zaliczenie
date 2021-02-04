@@ -30,20 +30,35 @@ export class CoursesComponent implements OnInit {
   }
 
   onDeleteCourse(id: string) {
-    this.courseService.deleteCourse(id).subscribe((res) => {});
+    this.courseService.deleteCourse(id).subscribe((res) => {
+      this.courseService
+        .fetchCourses()
+        .subscribe((response) => (this.courses = response));
+    });
   }
 
   onDeleteExam(id: string) {
-    this.examService.deleteExam(id).subscribe();
+    this.examService.deleteExam(id).subscribe((res) => {
+      this.courseService
+        .fetchCourses()
+        .subscribe((response) => (this.courses = response));
+    });
   }
 
   passTheExam(id: string) {
-    this.examService.passTheExam(id).subscribe();
+    this.examService.passTheExam(id).subscribe((res) => {
+      this.courseService
+        .fetchCourses()
+        .subscribe((response) => (this.courses = response));
+    });
   }
   addCourse() {
     const dialogRef = this.dialog.open(NewCourseComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.courseService
+        .fetchCourses()
+        .subscribe((response) => (this.courses = response));
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -54,6 +69,9 @@ export class CoursesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.courseService
+        .fetchCourses()
+        .subscribe((response) => (this.courses = response));
       console.log(`Dialog result: ${result}`);
     });
   }

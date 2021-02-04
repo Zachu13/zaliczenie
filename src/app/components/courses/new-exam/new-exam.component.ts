@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CourseService } from '../course.service';
 import { ExamService } from '../exam.service';
 import { ExamRequest } from './ExamRequest.model';
 
@@ -15,7 +16,8 @@ export class NewExamComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { courseId: string },
     private fb: FormBuilder,
-    private examService: ExamService
+    private examService: ExamService,
+    private courseService: CourseService
   ) {}
 
   ngOnInit() {
